@@ -1,5 +1,17 @@
 package benaiguy.dice;
 
-public class DieOperation implements IDieOperation {
+import java.util.List;
+
+public abstract class DieOperation {
+
+    protected DieOperation operation;
+
+    DieOperation(DieOperation operation) {
+        this.operation = operation;
+    }
+
+    protected abstract List<Integer> resolve();
+
+    public abstract int roll();
 
 }
