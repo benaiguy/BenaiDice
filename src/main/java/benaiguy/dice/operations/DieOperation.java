@@ -1,10 +1,10 @@
-package benaiguy.dice;
+package benaiguy.dice.operations;
 
 import java.util.List;
 
 public abstract class DieOperation {
 
-    protected DieOperation operation;
+    protected final DieOperation operation;
 
     DieOperation(DieOperation operation) {
         this.operation = operation;
@@ -12,6 +12,8 @@ public abstract class DieOperation {
 
     protected abstract List<Integer> resolve();
 
-    public abstract int roll();
+    public int roll() {
+        return resolve().stream().reduce((0), Integer::sum);
+    }
 
 }

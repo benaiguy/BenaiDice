@@ -1,11 +1,10 @@
-package benaiguy.dice;
+package benaiguy.dice.operations;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class BonusOperation extends DieOperation {
 
-    private int value;
+    private final int value;
 
     public BonusOperation(DieOperation operation, int value) {
         super(operation);
@@ -19,14 +18,6 @@ public class BonusOperation extends DieOperation {
         } else {
             return List.of(value + operation.resolve().stream()
                     .reduce((0), Integer::sum));
-        }
-    }
-
-    public int roll() {
-        if (operation == null) {
-            return value;
-        } else {
-            return value + operation.resolve().stream().reduce((0), Integer::sum);
         }
     }
 }

@@ -1,15 +1,14 @@
-package benaiguy.dice;
+package benaiguy.dice.operations;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 
 public class RollOperation extends DieOperation {
 
-    private int numberOfDice;
-    private int numberOfSides;
-    private ThreadLocalRandom rand;
+    private final int numberOfDice;
+    private final int numberOfSides;
+    private final ThreadLocalRandom rand;
 
     public RollOperation(DieOperation operation, int numberOfDice, int numberOfSides) {
         super(operation);
@@ -23,19 +22,14 @@ public class RollOperation extends DieOperation {
     protected List<Integer> resolve() {
         if (operation == null) {
             return rand.ints().limit(numberOfDice)
-                    .map(i -> (i % numberOfSides) + 1)
-                    .collect(ArrayList::new, ArrayList::add, null);
+                    .map(i -> (Math.abs(i) % numberOfSides) + 1)
+                    .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
         } else {
             List<Integer> resolution = operation.resolve();
             resolution.addAll(rand.ints().limit(numberOfDice)
-                    .map(i -> (i % numberOfSides) + 1)
-                    .collect(ArrayList::new, ArrayList::add, null));
+                    .map(i -> (Math.abs(i) % numberOfSides) + 1)
+                    .collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
             return resolution;
         }
-    }
-
-    @Override
-    public int roll() {
-        return 0;
     }
 }
