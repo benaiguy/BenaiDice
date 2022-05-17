@@ -6,7 +6,10 @@ public abstract class DieOperation {
 
     protected final DieOperation operation;
 
-    DieOperation(DieOperation operation) {
+    DieOperation(DieOperation operation, boolean nullable) {
+        if (!nullable && operation == null) {
+            throw new IllegalArgumentException("This operation must be applied to another non-null operation.");
+        }
         this.operation = operation;
     }
 

@@ -7,7 +7,7 @@ public class BonusOperation extends DieOperation {
     private final int value;
 
     public BonusOperation(DieOperation operation, int value) {
-        super(operation);
+        super(operation, true);
         this.value = value;
     }
 

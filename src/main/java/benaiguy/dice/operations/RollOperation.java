@@ -11,7 +11,13 @@ public class RollOperation extends DieOperation {
     private final ThreadLocalRandom rand;
 
     public RollOperation(DieOperation operation, int numberOfDice, int numberOfSides) {
-        super(operation);
+        super(operation, true);
+        if (numberOfDice < 1) {
+            throw new IllegalArgumentException("Parameter \"numberOfDice\" must be greater than 0.");
+        }
+        if (numberOfSides < 1) {
+            throw new IllegalArgumentException("Parameter \"numberOfSides\" must be greater than 0.");
+        }
         this.numberOfDice = numberOfDice;
         this.numberOfSides = numberOfSides;
         this.rand = ThreadLocalRandom.current();

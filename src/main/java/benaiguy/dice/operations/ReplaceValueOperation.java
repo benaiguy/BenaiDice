@@ -8,7 +8,7 @@ public class ReplaceValueOperation extends DieOperation {
     private final int replacementValue;
 
     public ReplaceValueOperation(DieOperation operation, int valueToReplace, int replacementValue) {
-        super(operation);
+        super(operation, false);
         this.valueToReplace = valueToReplace;
         this.replacementValue = replacementValue;
     }

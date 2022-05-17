@@ -5,7 +5,7 @@ import java.util.List;
 public class TwiceOperation extends DieOperation {
 
     public TwiceOperation(DieOperation operation) {
-        super(operation);
+        super(operation, false);
     }
 
     @Override

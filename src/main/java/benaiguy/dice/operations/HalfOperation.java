@@ -5,7 +5,7 @@ import java.util.List;
 public class HalfOperation extends DieOperation {
 
     public HalfOperation(DieOperation operation) {
-        super(operation);
+        super(operation, false);
     }
 
     @Override

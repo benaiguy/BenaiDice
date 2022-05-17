@@ -7,7 +7,10 @@ public class GroupOperation extends DieOperation {
     private final DieOperation otherOperation;
 
     public GroupOperation(DieOperation operation, DieOperation otherOperation) {
-        super(operation);
+        super(operation, false);
+        if (otherOperation == null) {
+            throw new IllegalArgumentException("This operation must be applied to two other non-null operation.");
+        }
         this.otherOperation = otherOperation;
     }
 
